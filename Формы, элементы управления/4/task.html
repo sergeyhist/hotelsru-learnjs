@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="task.css" />
+  </head>
+
+  <body>
+    <button id="button">Show form</button>
+    <div id="modal">
+      <div id="form_container">
+        <form id="form">
+          <div id="prompt-message">
+            Введите что-нибудь... <br />Пожалуйста..
+          </div>
+          <input name="text" type="text" />
+          <input type="submit" value="Ok" />
+          <input type="button" name="cancel" value="Отмена" />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      button.onclick = () => {
+        modal.style.display = 'block';
+        form.elements.text.focus();
+      };
+
+      form.onsubmit = () => {
+        alert(
+          "Вы ввели: " + (form.elements.text.value
+            ? form.elements.text.value
+            : null)
+        );
+      };
+
+      form.elements.cancel.onclick = () => {
+        modal.style.display = 'none';
+      };
+
+      document.onkeydown = (e) => {
+        e.key === 'Escape' && modal.style.display == 'block' && (modal.style.display = 'none')
+      }
+    </script>
+  </body>
+</html>

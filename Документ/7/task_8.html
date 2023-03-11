@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="time">
+      <span class="time__hours">hh</span><span class="time__separator">:</span
+      ><span class="time__minutes">mm</span
+      ><span class="time__separator">:</span
+      ><span class="time__seconds">ss</span>
+    </div>
+    <button class="button_start">Start</button>
+    <button class="button_stop">Stop</button>
+
+    <script>
+      const startButton = document.querySelector(".button_start");
+      const stopButton = document.querySelector(".button_stop");
+      const time = document.querySelector(".time");
+      let interval;
+
+      startButton.onclick = () => {
+        interval = setInterval(() => {
+          let date = new Date(Date.now());
+          let hours = date.getHours();
+          let minutes = date.getMinutes();
+          let seconds = date.getSeconds();
+          time.querySelector('.time__hours').textContent = hours < 10 ? '0' + hours : hours;
+          time.querySelector('.time__minutes').textContent = minutes < 10 ? '0' + minutes : minutes;
+          time.querySelector('.time__seconds').textContent = seconds < 10 ? '0' + seconds : seconds;
+        }, 100);
+      };
+
+      stopButton.onclick = () => {
+        clearInterval(interval);
+      };
+    </script>
+
+    <style>
+      .time__hours {
+        color: red;
+      }
+
+      .time__minutes {
+        color: green;
+      }
+
+      .time__seconds {
+        color: blue;
+      }
+    </style>
+  </body>
+</html>

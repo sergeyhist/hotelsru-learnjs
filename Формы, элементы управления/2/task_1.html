@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link type="text/css" rel="stylesheet" href="task_1.css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <ul>
+    <li>Кликните на div ниже, чтобы отредактировать текст.</li>
+    <li>Нажатие на Enter или потеря фокуса с ввода сохранят содержимое.</li>
+  </ul>
+
+  HTML-код разрешён.
+
+  <div id="view" class="view">Текст</div>
+
+  <script>
+    const click = () => {
+      view.classList.add('edit');
+      view.outerHTML = view.outerHTML.replace(/div/g, 'textarea');
+      view.focus();
+    }
+
+    const submit = () => {
+      let text = view.value;
+
+      view.classList.remove('edit');
+      view.outerHTML = view.outerHTML.replace(/textarea/g, 'div');
+      view.innerHTML = text;
+      view.onclick = function() {click()};
+    }
+
+    view.onclick = function() {click()};
+    document.onblur = function() {submit()};
+    document.onkeydown = function(e) {e.key == 'Enter' && submit()};
+  </script>
+
+</body>
+</html>

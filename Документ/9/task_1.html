@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="elem">wdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqdwdqqqqqqqqqqqqqqqqqqqqqqqqqdwqdqwdqwdwqdqwqd</div>
+    <button>Check</button>
+
+    <script>
+      let elem =document.querySelector('.elem');
+
+      document.querySelector('button').onclick = () => {
+        let scrollBottom =  elem.scrollHeight - elem.scrollTop - elem.clientHeight;
+
+        console.log(scrollBottom)
+      }
+    </script>
+
+    <style>
+      button {
+        margin-top: 20px;
+      }
+
+      .elem  {
+        margin-top: 50px;
+        width: 200px;
+        height: 300px;
+        overflow: auto;
+        word-break: break-all;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John</td>
+          <td>Smith</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>Pete</td>
+          <td>Brown</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>Ann</td>
+          <td>Lee</td>
+          <td>5</td>
+        </tr>
+        <tr>
+          <td>...</td>
+          <td>...</td>
+          <td>...</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      const tableBody = document.querySelector('tbody');
+      const tableRows = document.querySelectorAll('tbody tr');
+      let tableContent = [];
+
+      tableRows.forEach(row => {
+        const rowContent = row.querySelectorAll('td');
+        
+        tableContent.push({
+          name: rowContent[0].textContent,
+          surname: rowContent[1].textContent,
+          age: rowContent[2].textContent
+        });
+      });
+
+      tableRows.forEach(row => row.remove());
+      tableContent.sort((a, b) => a.name > b.name ? 1 : -1).forEach(row => {
+        let tableRow = document.createElement('tr');
+
+        tableRow.innerHTML = `<td>${row.name}</td><td>${row.surname}</td><td>${row.age}</td>`;
+        tableBody.append(tableRow);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="task_7.css" />
+  </head>
+
+  <body>
+    <div class="selector">
+      <button class="arrow prev">⇦</button>
+      <div data-select="0" class="collection">
+        <img src="https://ru.js.cx/carousel/1.png" />
+        <img src="https://ru.js.cx/carousel/2.png" />
+        <img src="https://ru.js.cx/carousel/3.png" />
+        <img src="https://ru.js.cx/carousel/4.png" />
+        <img src="https://ru.js.cx/carousel/5.png" />
+        <img src="https://ru.js.cx/carousel/6.png" />
+        <img src="https://ru.js.cx/carousel/7.png" />
+        <img src="https://ru.js.cx/carousel/8.png" />
+        <img src="https://ru.js.cx/carousel/9.png" />
+        <img src="https://ru.js.cx/carousel/10.png" />
+      </div>
+      <button class="arrow next">⇨</button>
+    </div>
+
+    <script>
+      const prevButton = document.querySelector('.prev');
+      const nextButton = document.querySelector('.next');
+      const collection = document.querySelector('.collection');
+      const images = collection.querySelectorAll('img');
+
+      nextButton.onclick = () => {
+        if (Math.abs(collection.dataset.select) + 3 < images.length) {
+          collection.dataset.select++;
+          images.forEach(image => {
+            image.style.left = (-130 * collection.dataset.select) + 'px';
+          });
+        };
+      }
+
+      prevButton.onclick = () => {
+        if (Math.abs(collection.dataset.select) + 3 > 3) {
+          collection.dataset.select--;
+          images.forEach(image => {
+            image.style.left = (-130 * collection.dataset.select) + 'px';
+          });
+        };
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      #field {
+        width: 200px;
+        height: 150px;
+        border: 10px solid black;
+        background-color: #00ff00;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      #ball {
+        top: 0;
+        left: 0;
+        position: absolute;
+        transition: all .3s ease;
+      }
+    </style>
+  </head>
+
+  <body style="height: 2000px">
+    Нажмите на поле для перемещения мяча.
+    <br />
+    Мяч не должен выходить за границы поля.
+
+    <div id="field">
+      <img src="https://ru.js.cx/clipart/ball.svg" id="ball" /> . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+      . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+    <script>
+      const field = document.querySelector('#field');
+      const fieldInfo = field.getBoundingClientRect();
+      const ball = document.querySelector('#ball');
+
+      field.onclick = function(e) {
+        let topOffset = e.clientY - (fieldInfo.top + field.clientTop) - ball.clientHeight / 2;
+        let leftOffset = e.clientX - (fieldInfo.left + field.clientLeft) - ball.clientWidth / 2;
+
+        topOffset < 0 && (topOffset = 0);
+        leftOffset < 0 && (leftOffset = 0);
+        topOffset + ball.clientHeight > field.clientHeight && (topOffset = topOffset - (topOffset + ball.clientHeight - field.clientHeight));
+        leftOffset + ball.clientWidth > field.clientWidth && (leftOffset = leftOffset - (leftOffset + ball.clientWidth - field.clientWidth));
+        ball.style.top = topOffset + 'px';
+        ball.style.left = leftOffset + 'px';
+      };
+    </script>
+  </body>
+</html>

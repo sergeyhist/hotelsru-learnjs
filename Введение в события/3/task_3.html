@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 4px;
+      }
+      th {
+        cursor: pointer;
+      }
+      th:hover {
+        background: yellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table id="grid">
+      <thead>
+        <tr>
+          <th data-type="number">Возраст</th>
+          <th data-type="string">Имя</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5</td>
+          <td>Вася</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Петя</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Женя</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Маша</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Илья</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      const table = document.querySelector('#grid');
+
+      table.onclick = (e) => {
+        if (e.target.tagName == 'TH') {
+          const tableBody = table.querySelector('tbody');
+          const tableHeaders = table.querySelectorAll('th');
+          let tableContent = [];
+
+          tableBody.querySelectorAll('tr').forEach(row => {
+            const elements = row.querySelectorAll('td');
+
+            tableContent.push({'0': elements[0].textContent, '1': elements[1].textContent});
+          });
+
+          tableContent.sort((a,b) => {
+            for (let i = 0; i < tableHeaders.length; i++) {
+              if (tableHeaders[i] === e.target) {
+                if (isNaN(a[i])) {
+                  return a[i] > b[i] ? 1 : -1;
+                } else {
+                  return +a[i] > +b[i] ? 1 : -1;
+                };
+              };
+            };
+          });
+
+          tableBody.querySelectorAll('tr').forEach(row => row.remove());
+          tableContent.forEach(el => {
+            let row = document.createElement('tr')
+
+            row.innerHTML = `<td>${el['0']}</td><td>${el['1']}</td>`;
+
+            tableBody.append(row);
+          })
+        }
+      }
+    </script>
+  </body>
+</html>

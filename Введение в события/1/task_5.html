@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <style>
+  button:before {
+    content: '▶';
+    color: green;
+  }
+
+  button.active:before {
+    content: '▼';
+  }
+
+  ul {
+    opacity: 0;
+    transform: scaleY(0);
+    transition: all .3 ease;
+  }
+
+  .visible {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  </style>
+  <body>
+    <button>Сладости (нажми меня)!</button>
+    <ul>
+      <li>Пирожное</li>
+      <li>Пончик</li>
+      <li>Мёд</li>
+    </ul>
+
+    <script>
+      const button = document.querySelector('button');
+      const list = document.querySelector('ul');
+
+      button.onclick = () => {
+        button.classList.contains('active') ? button.classList.remove('active') : button.classList.add('active');
+        list.classList.contains('visible') ? list.classList.remove('visible') : list.classList.add('visible');
+      }
+    </script>
+  </body>
+</html>

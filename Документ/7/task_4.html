@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul></ul>
+    <script>
+      const list = document.querySelector('ul');
+      let text = prompt('Enter text of the list element');
+
+      while (text) {
+        let elem = document.createElement('li');
+
+        elem.textContent = text;
+        list.append(elem);
+        text = prompt('Enter text of the list element');
+      };
+    </script>
+  </body>
+</html>

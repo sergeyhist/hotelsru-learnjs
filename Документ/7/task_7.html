@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div><table class="calendar"></table></div>
+    <div><table class="calendar_alt"></table></div>
+    <div><table class="calendar_alt_2"></table></div>
+    <script>
+      function createCalendar(root, year, month) {
+        const monthStart = new Date(year, month - 1);
+        const monthEnd = new Date(
+          new Date(year, month).getTime() - 24 * 60 * 60 * 1000
+        );
+        const monthLength = ((monthEnd.getTime() - monthStart.getTime()) / 1000 / 60 / 60 / 24) + 1;
+        const rowsCount = Math.ceil(((monthStart.getDay() == 0 ? 7 : monthStart.getDay()) - 1 + monthLength) / 7);
+
+        root.before(document.createTextNode((new Intl.DateTimeFormat("ru-RU", {month: 'long'}).format(monthStart)) + ' ' + monthStart.getFullYear()));
+
+        let titleLine = document.createElement("tr");
+
+        titleLine.innerHTML = `
+          <th>пн</th>
+          <th>вт</th>
+          <th>ср</th>
+          <th>чт</th>
+          <th>пт</th>
+          <th>сб</th>
+          <th>вс</th>
+        `;
+        root.append(titleLine);
+
+        for (let i = 0; i < rowsCount; i++) {
+          let tableRow = document.createElement('tr');
+
+          tableRow.innerHTML = `
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          `;
+          root.append(tableRow);
+        }
+
+        const tableCells = root.querySelectorAll('td');
+        
+        for (let i = 1; i <= monthLength; i++) {
+          tableCells[(monthStart.getDay() == 0 ? 7 : monthStart.getDay()) - 2 + i].textContent = i;
+        }
+      }
+
+      createCalendar(document.querySelector(".calendar"), 2012, 9);
+      createCalendar(document.querySelector(".calendar_alt"), 2022, 5);
+      createCalendar(document.querySelector(".calendar_alt_2"), 2023, 3);
+    </script>
+    <style>
+      div {
+        margin-top: 25px;
+      }
+
+      table {
+        margin-top: 10px;
+        text-align: center;
+        border-collapse: collapse;
+      }
+
+      th {
+        background: white;
+      }
+
+      td {
+        background: #c4c7cf;
+      }
+
+      th, td {
+        padding: 5px;
+      }
+
+      table, th, td {
+        border: 1px solid black;
+      }
+    </style>
+  </body>
+</html>

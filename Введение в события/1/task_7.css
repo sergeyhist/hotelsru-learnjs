@@ -1,0 +1,40 @@
+.arrow {
+  padding: 0;
+  background: #ddd;
+  border-radius: 15px;
+  border: 1px solid gray;
+  font-size: 24px;
+  line-height: 24px;
+  height: 24px;
+  color: #444;
+}
+
+.arrow:focus {
+  outline: none;
+}
+
+.arrow:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+.selector {
+  display: flex;
+  align-items: center;
+}
+
+.collection {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  height: 130px;
+  width: 390px;
+  margin: 0;
+  padding: 0;
+}
+
+.collection img {
+  position: relative;
+  width: 130px;
+  height: 130px;
+}
